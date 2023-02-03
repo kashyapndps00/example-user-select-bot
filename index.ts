@@ -34,8 +34,10 @@ bot.on(":user_shared", async ctx => {
         parse_mode: "HTML"
     }).catch((e: Error) => {
         ctx.reply("Cannot Send Message :( " + e.message);
+        errored = true;
         return;
     });
+    if (errored) return;
 
     ctx.reply("🎉")
     ctx.reply("Sent Successfully!!");
