@@ -30,15 +30,15 @@ bot.on(":user_shared", async ctx => {
     })
 
     if (errored) return;
+    var sendfail: boolean = false;
     await bot.api.sendMessage(chat?.user_id.toString(), `<b>Message From User</b>\nHello Please Contact Me @${ctx.from?.username}`, {
         parse_mode: "HTML"
     }).catch((e: Error) => {
+        sendfail = true;
         ctx.reply("Cannot Send Message :( " + e.message);
-        errored = true;
         return;
     });
-    if (errored) return;
-
+    if (sendfail) return;
     ctx.reply("🎉")
     ctx.reply("Sent Successfully!!");
 
